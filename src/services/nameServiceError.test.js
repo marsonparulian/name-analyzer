@@ -4,12 +4,12 @@ import crossFetch from "cross-fetch";
 jest.mock("cross-fetch");
 import { analyzeNameForAge, analyzeNameForGender, analyzeNameForNationality } from "./nameService";
 
-describe("Test erro cases in nameService", () => {
+describe("Test error cases in nameService", () => {
     describe("Response return not  `ok`", () => {
         beforeAll(() => {
             // Mock response to return not `ok`
             crossFetch.mockResolvedValue({
-                status: 400, // mocking not `ok` : HTTP code 400
+                ok: () => false,
             });
         });
         test("analyzeNameForAge should reject", async () => {
@@ -22,5 +22,16 @@ describe("Test erro cases in nameService", () => {
             // Error handle should be called once
             expect(errorHandler.mock.calls.length).toBe(1);
         });
+        test("`analyzeNameForGender` function should reject", async () => {
+            // Set up  spy to handle rejection. This will indicate whether a rejection has been thrown or not.
+            const errorHandlerSpy = jest.fn();
+
+            // Execute and wait until finish (The Promise is rejected). Then catch with the handler
+            await analyzeNameForGender("Abraham").catch(errorHandlerSpy);
+
+            // Verify the handler only called once
+            expect(errorHandlerSpy.mock.calls.length).toBe(1);
+        });
+
     });
 })

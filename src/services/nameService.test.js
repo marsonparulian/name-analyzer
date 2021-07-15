@@ -12,4 +12,18 @@ describe("Test for nameService", () => {
             return expect(dataPromise).resolves.toEqual(expectedData);
         })
     });
+    describe("gender predictor ", () => {
+        test("Response should  be an object containing `gender` property", async () => {
+            // Expectation
+            const expected = expect.objectContaining({
+                gender: expect.any(String),
+            })
+
+            // Make request
+            const result = await analyzeNameForGender("Freddy").catch(e => console.error(e));
+
+            // Verify the response is an object containing `gender` property.
+            expect(result).toEqual(expected);
+        });
+    });
 });

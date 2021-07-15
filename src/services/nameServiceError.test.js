@@ -32,6 +32,15 @@ describe("Test error cases in nameService", () => {
             // Verify the handler only called once
             expect(errorHandlerSpy.mock.calls.length).toBe(1);
         });
+        test("analyze name for nationality should reject", async () => {
+            // Setup spy to detech if reject / error has been thrown by the service.
+            const errorHandlerSpy = jest.fn();
 
+            // Run request and wait until rejected
+            await analyzeNameForNationality("Abas").catch(errorHandlerSpy);
+
+            // Verify the rejection has been caught once.
+            expect(errorHandlerSpy.mock.calls.length).toBe(1);
+        });
     });
 })

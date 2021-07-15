@@ -38,14 +38,18 @@ export const analyzeNameForGender = async (name) => {
     // End point
     const url = `https://api.genderize.io?name=${name}`;
 
-    // Request
-    const response = await crossFetch(url);
+    try {
+        // Request
+        const response = await crossFetch(url);
 
-    // Return
-    if (!response.ok) {
-        return Promise.reject("Error when analyzing name for gender.");
+        // Return
+        if (!response.ok) {
+            return Promise.reject("Error when analyzing name for gender.");
+        }
+        return await response.json();
+    } catch (e) {
+        throw ("Error in analyzing name for gender.");
     }
-    return await response.json();
 }
 /**
  * Analyze a single word name and predict the nationality.

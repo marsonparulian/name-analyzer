@@ -26,4 +26,23 @@ describe("Test for nameService", () => {
             expect(result).toEqual(expected);
         });
     });
+    describe("Nationality predictor", () => {
+        test("Response should be an object containing `country` with array of object", () => {
+            // Expectation
+            const expected = expect.objectContaining({
+                country: expect.arrayContaining([
+                    expect.objectContaining({
+                        country_id: expect.any(String),
+                        probability: expect.any(Number),
+                    })
+                ])
+            })
+
+            // Run the service and wait for the result.
+            const service = analyzeNameForNationality("Farida").catch(e => console.error(e));
+
+            // Verify the result is an object containing `nationality` prop.
+            return expect(service).resolves.toEqual(expected);
+        });
+    });
 });

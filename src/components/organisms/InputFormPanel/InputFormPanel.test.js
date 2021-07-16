@@ -5,6 +5,8 @@ describe("Tests <InputFormPanel />", () => {
         test.todo("Should have placeholder for input text", () => {
 
         });
+        test.todo("Should have `propTypes.handleNameInputChange`");
+        test.todo("Should execute `props.handleNameInputChange` when user type in name with the `name` as first argument");
         test.todo("Should have submit button with   'Analyze' text");
         test.todo("Should have `handleSubmit` method");
         test.todo("Should execute `handleSubmit` when submit button is clicked ")

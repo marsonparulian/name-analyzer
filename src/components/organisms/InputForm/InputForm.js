@@ -33,5 +33,6 @@ InputForm.propTypes = {
     nameInput: PropTypes.shape({
         value: PropTypes.string.isRequired,
     }).isRequired,
+    handleNameChange: PropTypes.func.isRequired,
 }
 export default InputForm;

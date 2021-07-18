@@ -1,13 +1,17 @@
 import { render, screen } from "@testing-library/react";
+import cloneDeep from "lodash/cloneDeep";
 import texts from "../../../configs/texts";
 import InputForm from "./InputForm";
+import inputFormDefault from "./inputFormDefault";
 
 // Behaviour test for <InputForm />
 describe("<InputForm /> behaviour tests", () => {
     describe("Initial state", () => {
         beforeEach(() => {
             render(
-                <InputForm />
+                <InputForm
+                    {...inputFormDefault}
+                />
             );
         });
         test("Check initial elements and states", () => {
@@ -29,9 +33,21 @@ describe("<InputForm /> behaviour tests", () => {
     });
     describe("Render with pre existing `name`,", () => {
         beforeEach(() => {
+            // Prepare the state
+            const newState = cloneDeep(inputFormDefault);
+            newState.nameInput.value = "Richard";
 
+            // Render
+            render(
+                <InputForm {...newState} />
+            );
         });
-        test.todo("Check initial elements and states");
+        test("Check initial elements and states", () => {
+            // `name` input value should be as supplied in props
+            expect(screen.getByPlaceholderText(texts.NAME_INPUT_PLACEHOLDER)).toHaveAttribute("value", "Richard");
+            // Submit button should be not disabled
+            expect(screen.getByText(texts.SUBMIT_BUTTON_TEXT).closest("button")).not.toHaveAttribute("disabled");
+        });
         test.todo("User hit 'Submit' button')");
         test.todo("User remove the name");
         test.todo("User replace the name and press 'Enter'");

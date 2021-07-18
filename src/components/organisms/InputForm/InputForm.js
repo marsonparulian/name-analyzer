@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import texts from "../../../configs/texts";
+import { PROPERTY_TYPES } from "@babel/types";
 
 /**
  * Form that ahndle input to analyze name
@@ -13,10 +15,12 @@ const InputForm = (props) => {
                         type="text"
                         placeholder={texts.NAME_INPUT_PLACEHOLDER}
                         className="form-control form-control-lg"
+                        value={props.nameInput.value}
+                        onChange={() => null}
                     />
                     <div className="input-group-append">
                         <button
-                            disabled
+                            disabled={props.nameInput.value ? false : true}
                         >{texts.SUBMIT_BUTTON_TEXT}</button>
                     </div>
                 </div>
@@ -25,4 +29,9 @@ const InputForm = (props) => {
     )
 }
 
+InputForm.propTypes = {
+    nameInput: PropTypes.shape({
+        value: PropTypes.string.isRequired,
+    }).isRequired,
+}
 export default InputForm;

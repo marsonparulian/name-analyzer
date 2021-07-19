@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import texts from "../../../configs/texts";
 import { PROPERTY_TYPES } from "@babel/types";
@@ -7,6 +7,13 @@ import { PROPERTY_TYPES } from "@babel/types";
  * Form that ahndle input to analyze name
  */
 const InputForm = (props) => {
+
+    // Handle change in name input
+    const handleNameChange = useCallback((e) => {
+        console.log("Handling name change")
+        props.onNameChange(e.target.value);
+    }, [props.onNameChange]);
+
     return (
         <form id="input-form" >
             <div className="form-row">
@@ -16,7 +23,7 @@ const InputForm = (props) => {
                         placeholder={texts.NAME_INPUT_PLACEHOLDER}
                         className="form-control form-control-lg"
                         value={props.nameInput.value}
-                        onChange={() => null}
+                        onChange={handleNameChange}
                     />
                     <div className="input-group-append">
                         <button
@@ -33,6 +40,6 @@ InputForm.propTypes = {
     nameInput: PropTypes.shape({
         value: PropTypes.string.isRequired,
     }).isRequired,
-    handleNameChange: PropTypes.func.isRequired,
+    onNameChange: PropTypes.func.isRequired,
 }
 export default InputForm;

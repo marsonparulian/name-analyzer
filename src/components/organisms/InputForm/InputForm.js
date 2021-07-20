@@ -10,12 +10,20 @@ const InputForm = (props) => {
 
     // Handle change in name input
     const handleNameChange = useCallback((e) => {
-        console.log("Handling name change")
         props.onNameChange(e.target.value);
-    }, [props.onNameChange]);
+    }, []);
+    // Handle form submit
+    const handleSubmit = useCallback((e) => {
+        e.preventDefault();
+
+        // Submit only if name not empty
+        if (props.nameInput.value) props.onSubmit(props.nameInput.value);
+    }, [props.nameInput.value]);
 
     return (
-        <form id="input-form" >
+        <form id="input-form"
+            onSubmit={handleSubmit}
+        >
             <div className="form-row">
                 <div className="input-group input-group-lg">
                     <input
@@ -27,12 +35,13 @@ const InputForm = (props) => {
                     />
                     <div className="input-group-append">
                         <button
+                            type="submit"
                             disabled={props.nameInput.value ? false : true}
                         >{texts.SUBMIT_BUTTON_TEXT}</button>
                     </div>
                 </div>
             </div>
-        </form>
+        </form >
     )
 }
 
@@ -41,5 +50,6 @@ InputForm.propTypes = {
         value: PropTypes.string.isRequired,
     }).isRequired,
     onNameChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
 }
 export default InputForm;

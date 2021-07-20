@@ -15,9 +15,8 @@ export const rootReducer = combineReducers({
 
 // Default root state
 export const defaultRootState = {
-    inputForm: inputFormDefault.nameInput,
+    inputForm: inputFormDefault,
 };
 // Create store
 const store = createStore(rootReducer, defaultRootState, applyMiddleware(reduxThunk));
 export default store;
-e

@@ -10,3 +10,12 @@ export const updateNameInput = (value) => {
         payload: value,
     }
 }
+/**
+ * Action creator. Submit input form.
+ */
+export const submitInputForm = (data) => {
+    return {
+        type: actionTypes.SUBMIT_INPUT_FORM,
+        payload: data,
+    }
+}

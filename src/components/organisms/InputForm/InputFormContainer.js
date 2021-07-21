@@ -1,7 +1,7 @@
 // Connect <InputForm />
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { updateNameInput } from "./inputFormActions";
+import { updateNameInput, submitInputForm } from "./inputFormActions";
 import InputForm from "./InputForm";
 
 // Map global state to props
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         onNameChange: updateNameInput,
-        onSubmit: () => false,
+        onSubmit: submitInputForm,
     }, dispatch);
 };
 

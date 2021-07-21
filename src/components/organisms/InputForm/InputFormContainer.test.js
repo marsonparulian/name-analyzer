@@ -1,4 +1,5 @@
 // Tests for <InputFormContainer />
+import cloneDeep from "lodash/cloneDeep";
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
@@ -21,7 +22,8 @@ describe("<InputFormContainer /> with default state", () => {
 
         return {
             nameInput,
-            submitButton
+            submitButton,
+            defaultState: cloneDeep(store.getState()),
         };
     }
     test("Default components and the state", () => {
@@ -54,6 +56,28 @@ describe("<InputFormContainer /> with default state", () => {
         // Verify the name input's value
         expect(nameInput).toHaveAttribute("value", "Ivanka");
     });
+    test("User type a name & submit form", () => {
+        const { nameInput, submitButton, defaultState: expectedState } = setup();
+        const aName = "Roger";
+        // User clear the name input
+        userEvent.clear(nameInput);
+        // User type in a name
+        userEvent.type(nameInput, aName);
 
+        // User press submit button
+        userEvent.click(submitButton);
+
+        // name input should not change
+        expect(nameInput).toHaveAttribute("value", aName);
+
+        // Start to compare state
+        const currentState = store.getState();
+        // Should modify `ResultPanel`
+        expectedState.resultPanel.msg = "";
+        expect(currentState.resultPanel).toEqual(expectedState.resultPanel);
+        console.log(store.getState());
+
+        // Should modify `ResultByAge` state    
+    });
 });
 

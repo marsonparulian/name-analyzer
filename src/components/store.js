@@ -22,7 +22,7 @@ export const rootReducer = combineReducers({
 export const defaultRootState = {
     inputForm: inputFormDefault,
     resultPanel: resultPanelDefault,
-    resultAge, resultAgeDefault,
+    resultAge: resultAgeDefault,
 };
 // Create store
 const store = createStore(rootReducer, defaultRootState, applyMiddleware(reduxThunk));

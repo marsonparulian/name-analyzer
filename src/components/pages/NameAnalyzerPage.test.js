@@ -23,4 +23,15 @@ describe("<NameAnalyzerPage /> with default state", () => {
         // The result panel should display the initial message
         expect(screen.queryByText(texts.RESULT_PANEL_DEFAULT_MSG)).toBeInTheDocument();
     })
-})
+    test("User type in name & click submit button", () => {
+        const aName = "Astrid";
+        // User type in a name
+        userEvent.type(nameInput, aName);
+
+        // User click submit button
+        userEvent.click(submitButton);
+
+        // Initial result message should not be displayed.
+        expect(screen.queryByText(texts.RESULT_PANEL_DEFAULT_MSG)).not.toBeInTheDocument();
+    })
+});

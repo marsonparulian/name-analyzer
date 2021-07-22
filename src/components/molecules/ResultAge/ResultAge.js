@@ -16,3 +16,4 @@ ResultAge.propTypes = {
     // The predicted age.
     age: PropTypes.number.isRequired,
 }
+export default ResultAge;

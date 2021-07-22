@@ -5,6 +5,6 @@ const defaultState = {
     // Message to show when `busy` or `error`. If not falsy, the component will show this message.
     msg: "",
     // The predicted age
-    age: null,
+    age: 0,
 }
 export default defaultState;

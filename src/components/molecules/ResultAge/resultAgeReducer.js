@@ -6,9 +6,20 @@ import resultAgeDefault from "./resultAgeDefault";
 import { clone } from "@babel/types";
 
 const reducer = (state = null, action) => {
+    let newState;
     switch (action.type) {
+        case actionTypes.SUBMIT_INPUT_FORM_OK:
+            newState = cloneDeep(state);
+
+            // Clear the message
+            newState.msg = "";// Assign the age
+            // Assign the result
+            newState.age = action.payload;
+
+            return newState;
+
         case actionTypes.SUBMIT_INPUT_FORM:
-            const newState = cloneDeep(state);
+            newState = cloneDeep(state);
 
             // Set the message
             newState.msg = texts.RESULT_AGE_BUSY_TEXT;

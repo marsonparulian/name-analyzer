@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from "../store";
 import texts from "../../configs/texts";
 import NameAnalyzerPage from "./NameAnalyzerPage";
+import { createResultText } from "../molecules/ResultAge/ResultAge";
 
 describe("<NameAnalyzerPage /> with default state", () => {
     // Shared elements
@@ -23,7 +24,7 @@ describe("<NameAnalyzerPage /> with default state", () => {
         // The result panel should display the initial message
         expect(screen.queryByText(texts.RESULT_PANEL_DEFAULT_MSG)).toBeInTheDocument();
     })
-    test("User type in name & click submit button", () => {
+    test("User type in name & click submit button", async () => {
         const aName = "Astrid";
         // User type in a name
         userEvent.type(nameInput, aName);
@@ -36,5 +37,10 @@ describe("<NameAnalyzerPage /> with default state", () => {
 
         // Verify all the `busy` messages are displayed
         expect(screen.queryByText(texts.RESULT_AGE_BUSY_TEXT)).toBeInTheDocument();
+
+        // Verify the result age
+        const resultAgeTextRegex = new RegExp(`.*${texts.RESULT_AGE_OK_PRE_TEXT}*`, "i");
+        const resultAgeText = await screen.findByText(resultAgeTextRegex);
+        expect(resultAgeText).toBeInTheDocument();
     });
 });

@@ -2,7 +2,8 @@
 import { render, screen } from "@testing-library/react";
 import texts from "../../../configs/texts";
 import resultAgeDefault from "./resultAgeDefault";
-import ResultAge from "./ResultAge";
+import ResultAge, { createResultText } from "./ResultAge";
+import { create } from "lodash";
 
 describe("<ResultAge /> ", () => {
     test("Default state, should display nothing", () => {
@@ -23,5 +24,15 @@ describe("<ResultAge /> ", () => {
         expect(screen.getByText(msg)).toBeInTheDocument();
     });
     test.todo("`status`= `error` & ` msg` are set, should display `msg` with red text");
-    test.todo("`msg` is falsy, should show `age` with defined pre-text");
-})
+    test("`msg` is falsy, should show `age` with defined pre-text", () => {
+        const age = 40;
+        // Render
+        render(
+            <ResultAge {...Object.assign({}, resultAgeDefault, { age })} />
+        );
+        // Verify the `age is displayed
+        const expectedText = createResultText(age, texts.RESULT_AGE_OK_PRE_TEXT);
+        expect(screen.queryByText(expectedText)).toBeInTheDocument();
+    });
+
+});

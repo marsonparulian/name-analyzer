@@ -33,5 +33,8 @@ describe("<NameAnalyzerPage /> with default state", () => {
 
         // Initial result message should not be displayed.
         expect(screen.queryByText(texts.RESULT_PANEL_DEFAULT_MSG)).not.toBeInTheDocument();
-    })
+
+        // Verify all the `busy` messages are displayed
+        expect(screen.queryByText(texts.RESULT_AGE_BUSY_TEXT)).toBeInTheDocument();
+    });
 });

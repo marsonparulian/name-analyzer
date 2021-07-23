@@ -75,7 +75,6 @@ describe("<InputFormContainer /> with default state", () => {
         // Should modify `ResultPanel`
         expectedState.resultPanel.msg = "";
         expect(currentState.resultPanel).toEqual(expectedState.resultPanel);
-        console.log(store.getState());
 
         // Should modify `ResultByAge` state    
     });

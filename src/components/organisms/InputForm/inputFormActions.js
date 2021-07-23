@@ -14,8 +14,12 @@ export const updateNameInput = (value) => {
  * Action creator. Submit input form.
  */
 export const submitInputForm = (data) => {
+    return (dispatch) => {
+        dispatch(submitFormStarted());
+    }
+}
+const submitFormStarted = () => {
     return {
         type: actionTypes.SUBMIT_INPUT_FORM,
-        payload: data,
     }
 }

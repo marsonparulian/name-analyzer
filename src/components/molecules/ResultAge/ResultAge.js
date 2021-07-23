@@ -6,6 +6,12 @@ import texts from "../../../configs/texts";
  */
 const ResultAge = (props) => {
 
+    // Show `msg` if not falssy.
+    if (props.msg) {
+        return <p>{props.msg}</p>
+    }
+
+    // Default
     return null;
 }
 ResultAge.propTypes = {

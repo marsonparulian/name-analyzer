@@ -21,9 +21,9 @@ export const submitInputForm = (data) => {
         // Analyze name for age
         analyzeNameForAge(data)
             .then(result => {
-                dispatch(submitFormOk(result.age));
+                dispatch(analyzeAgeOk(result.age));
             }).catch(e => {
-                dispatch(submitFormError());
+                dispatch(analyzeNameError());
             });
     }
 }
@@ -32,14 +32,14 @@ const submitFormStarted = () => {
         type: actionTypes.SUBMIT_INPUT_FORM,
     }
 }
-const submitFormOk = (age) => {
+const analyzeAgeOk = (age) => {
     return {
-        type: actionTypes.SUBMIT_INPUT_FORM_OK,
+        type: actionTypes.ANALYZE_NAME_OK,
         payload: age,
     }
 }
-const submitFormError = () => {
+const analyzeNameError = () => {
     return {
-        type: actionTypes.SUBMIT_INPUT_FORM_ERROR,
+        type: actionTypes.ANALYZE_NAME_ERROR,
     }
 }

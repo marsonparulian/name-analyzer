@@ -8,7 +8,7 @@ import { clone } from "@babel/types";
 const reducer = (state = null, action) => {
     let newState;
     switch (action.type) {
-        case actionTypes.SUBMIT_INPUT_FORM_OK:
+        case actionTypes.ANALYZE_NAME_OK:
             newState = cloneDeep(state);
 
             // Clear the message

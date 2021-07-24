@@ -8,6 +8,13 @@ import { clone } from "@babel/types";
 const reducer = (state = null, action) => {
     let newState;
     switch (action.type) {
+        case actionTypes.ANALYZE_NAME_ERROR:
+            newState = cloneDeep(state);
+
+            // Set error message
+            newState.msg = texts.RESULT_AGE_ERROR_TEXT;
+
+            return newState
         case actionTypes.ANALYZE_NAME_OK:
             newState = cloneDeep(state);
 

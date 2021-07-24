@@ -70,3 +70,9 @@ export const analyzeNameForNationality = async (name) => {
     return response.json();
 }
 
+export default {
+    analyzeNameForAge,
+    analyzeNameForGender,
+    analyzeNameForNationality,
+}
+

@@ -8,5 +8,9 @@ const texts = {
     RESULT_AGE_BUSY_TEXT: "Predicting age..",
     RESULT_AGE_OK_PRE_TEXT: "Predicted age : ",
     RESULT_AGE_ERROR_TEXT: "Error. Unable to predict the age.",
+    // Text messages for result by gender
+    RESULT_GENDER_BUSY_TEXT: "Predicting gender..",
+    RESULT_GENDER_OK_PRE_TEXT: "Predicted gender : ",
+    RESULT_GENDER_ERROR_TEXT: "Error. Unable to predict the gender.",
 }
 export default texts;

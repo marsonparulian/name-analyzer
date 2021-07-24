@@ -1,6 +1,6 @@
 // <ResultGender /> state reducer
 
-export default reducer = (state = null, action) => {
+const reducer = (state = null, action) => {
     let newState;
     switch (action.type) {
 
@@ -8,3 +8,4 @@ export default reducer = (state = null, action) => {
             return state;
     }
 }
+export default reducer;

@@ -25,7 +25,7 @@ const InputForm = (props) => {
             onSubmit={handleSubmit}
         >
 
-            <p class="text-center text-muted">Put in a name and we will predict..</p>
+            <p className="text-center text-muted">Put in a name and we will predict..</p>
 
             <div className="form-row">
 

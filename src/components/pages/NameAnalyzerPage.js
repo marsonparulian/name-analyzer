@@ -9,6 +9,9 @@ const NameAnalyzerPage = (props) => {
 
     return (
         <div>
+            <header class="text-center">
+                <h1>Predict</h1>
+            </header>
             <InputFormContainer />
             <ResultPanelContainer />
         </div >

@@ -24,7 +24,11 @@ const InputForm = (props) => {
         <form id="input-form"
             onSubmit={handleSubmit}
         >
+
+            <p class="text-center text-muted">Put in a name and we will predict..</p>
+
             <div className="form-row">
+
                 <div className="input-group input-group-lg">
                     <input
                         type="text"
@@ -37,6 +41,7 @@ const InputForm = (props) => {
                         <button
                             type="submit"
                             disabled={props.nameInput.value ? false : true}
+                            className="btn btn-lg btn-primary"
                         >{texts.SUBMIT_BUTTON_TEXT}</button>
                     </div>
                 </div>

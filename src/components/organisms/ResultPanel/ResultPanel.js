@@ -9,7 +9,7 @@ import ResultGenderContainer from "../../molecules/ResultGender/ResultGenderCont
 const ResultPanel = (props) => {
 
     // Initial content
-    let content = <div className="text-center text-muted">{props.msg}</div>;
+    let content = <div className="lead text-center text-muted" style={{ margin: "40px auto" }}>{props.msg}</div>;
     // If no `msg`, display the 'result' components
     if (!props.msg) {
         content = (
@@ -21,7 +21,7 @@ const ResultPanel = (props) => {
     }
 
     return (
-        <div id="result-panel">
+        <div id="result-panel" className="jumbotron">
             {content}
         </div>
     )

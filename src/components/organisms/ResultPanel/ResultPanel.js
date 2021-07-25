@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ResultAgeContainer from "../../molecules/ResultAge/ResultAgeContainer";
+import ResultGenderContainer from "../../molecules/ResultGender/ResultGenderContainer";
 
 /**
  * Component to show list of result
@@ -14,6 +15,7 @@ const ResultPanel = (props) => {
         content = (
             <div>
                 <ResultAgeContainer />
+                <ResultGenderContainer />
             </div>
         );
     }

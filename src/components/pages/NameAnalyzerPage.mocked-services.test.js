@@ -6,7 +6,7 @@ import store from "../store";
 import texts from "../../configs/texts";
 import NameAnalyzerPage from "./NameAnalyzerPage";
 // Mock services
-import { analyzeNameForAge } from "../../services/nameService";
+import { analyzeNameForAge, analyzeNameForGender } from "../../services/nameService";
 jest.mock("../../services/nameService");
 
 describe("Test <NameAnalyzerPage /> with mocked services ", () => {
@@ -26,6 +26,7 @@ describe("Test <NameAnalyzerPage /> with mocked services ", () => {
     test("User type in a name & click submit button", async () => {
         // Mock services to reject. Must be defined in this `test` scope.
         analyzeNameForAge.mockImplementation(() => Promise.reject());
+        analyzeNameForGender.mockImplementation(() => Promise.reject());
 
         const aName = "Abigail";
         // User type in a name
@@ -36,11 +37,15 @@ describe("Test <NameAnalyzerPage /> with mocked services ", () => {
 
         // Results should show 'busy' messages'
         expect(screen.getByText(texts.RESULT_AGE_BUSY_TEXT)).toBeInTheDocument();
+        expect(screen.getByText(texts.RESULT_GENDER_BUSY_TEXT)).toBeInTheDocument();
 
         // Result by age should show error messsage
         const resultAgeText = await screen.findByText(texts.RESULT_AGE_ERROR_TEXT);
         expect(resultAgeText).toBeInTheDocument();
 
+        // Result by gender should show error message
+        const resultGenderText = await screen.findByText(texts.RESULT_GENDER_ERROR_TEXT);
+        expect(resultGenderText).toBeInTheDocument();
 
     })
 });

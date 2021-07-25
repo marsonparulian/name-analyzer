@@ -1,6 +1,6 @@
 // Actions for <InputForm />
 import actionTypes from "../../actionTypes";
-import { analyzeNameForAge } from "../../../services/nameService";
+import { analyzeNameForAge, analyzeNameForGender } from "../../../services/nameService";
 
 /**
  * Update the name input
@@ -23,8 +23,15 @@ export const submitInputForm = (data) => {
             .then(result => {
                 dispatch(analyzeAgeOk(result.age));
             }).catch(e => {
-                dispatch(analyzeNameError());
+                dispatch(analyzeAgeError());
             });
+
+        // Analyze gender
+        analyzeNameForGender(data).then(() => {
+
+        }).catch(() => {
+            dispatch(analyzeGenderError());
+        });
     }
 }
 const submitFormStarted = () => {
@@ -38,8 +45,13 @@ const analyzeAgeOk = (age) => {
         payload: age,
     }
 }
-const analyzeNameError = () => {
+const analyzeAgeError = () => {
     return {
         type: actionTypes.ANALYZE_NAME_ERROR,
+    }
+}
+const analyzeGenderError = () => {
+    return {
+        type: actionTypes.ANALYZE_GENDER_ERROR,
     }
 }

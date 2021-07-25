@@ -2,12 +2,22 @@
 import cloneDeep from "lodash/cloneDeep";
 import actionTypes from "../../actionTypes";
 import texts from "../../../configs/texts";
+import resultGenderDefault from "./resultGenderDefault";
 
 const reducer = (state = null, action) => {
     let newState;
     switch (action.type) {
+        case actionTypes.ANALYZE_GENDER_OK:
+            newState = cloneDeep(resultGenderDefault);
+
+            // Set the gender
+            newState.gender = action.payload;
+
+            return newState;
+
         case actionTypes.ANALYZE_GENDER_ERROR:
-            newState = cloneDeep(state);
+            // Reset the state
+            newState = cloneDeep(resultGenderDefault);
 
             // Set error message
             newState.msg = texts.RESULT_GENDER_ERROR_TEXT;

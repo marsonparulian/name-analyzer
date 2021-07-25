@@ -42,5 +42,11 @@ describe("<NameAnalyzerPage /> with default state", () => {
         const resultAgeTextRegex = new RegExp(`.*${texts.RESULT_AGE_OK_PRE_TEXT}*`, "i");
         const resultAgeText = await screen.findByText(resultAgeTextRegex, {}, { timeout: 4000 });
         expect(resultAgeText).toBeInTheDocument();
+
+        // Verify the result gender text
+        const resultGenderTextPattern = new RegExp(`${texts.RESULT_GENDER_OK_PRE_TEXT}.*`, "i");
+        const resultGenderText = await screen.findByText(resultGenderTextPattern);
+        expect(resultGenderText).toBeInTheDocument();
+
     });
 });

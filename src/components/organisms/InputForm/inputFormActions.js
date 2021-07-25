@@ -27,8 +27,8 @@ export const submitInputForm = (data) => {
             });
 
         // Analyze gender
-        analyzeNameForGender(data).then(() => {
-
+        analyzeNameForGender(data).then((result) => {
+            dispatch(analyzeGenderOk(result.gender));
         }).catch(() => {
             dispatch(analyzeGenderError());
         });
@@ -48,6 +48,12 @@ const analyzeAgeOk = (age) => {
 const analyzeAgeError = () => {
     return {
         type: actionTypes.ANALYZE_NAME_ERROR,
+    }
+}
+const analyzeGenderOk = (gender) => {
+    return {
+        type: actionTypes.ANALYZE_GENDER_OK,
+        payload: gender,
     }
 }
 const analyzeGenderError = () => {

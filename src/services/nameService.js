@@ -1,5 +1,6 @@
 // Services to analyze name
 import crossFetch from "cross-fetch";
+import { resultGenderOkText } from "../components/molecules/ResultGender/ResultGender";
 
 /**
  * Predict age based on a name.
@@ -23,8 +24,14 @@ export const analyzeNameForAge = async (name, country = null) => {
             return Promise.reject("Bad response in analyzing name for age.");
         }
 
+        // Parse the result
+        const result = await response.json();
+
+        // If result not valid, reject.
+        if (!result.age) return Promise.reject();
+
         // Return 
-        return await response.json();
+        return result;
     } catch (e) {
         throw (e);
     }
@@ -46,7 +53,12 @@ export const analyzeNameForGender = async (name) => {
         if (!response.ok) {
             return Promise.reject("Error when analyzing name for gender.");
         }
-        return await response.json();
+
+        // Is the result data valid ?
+        const result = await response.json();
+        if (!result.gender) return Promise.reject();
+
+        return result;
     } catch (e) {
         throw ("Error in analyzing name for gender.");
     }
@@ -58,16 +70,25 @@ export const analyzeNameForGender = async (name) => {
  */
 export const analyzeNameForNationality = async (name) => {
     // End point
-    const url = `https://api.nationalize.io?name=michael`;
+    const url = `https://api.nationalize.io?name=${name}`;
 
-    // Request
-    const response = await crossFetch(url);
+    try {
+        // Request
+        const response = await crossFetch(url);
 
-    // Response
-    if (!response.ok) {
-        return Promise.reject("Error when analyzing name for nationality.");
+        // Response
+        if (!response.ok) {
+            return Promise.reject("Error when analyzing name for nationality.");
+        }
+
+        // Reject if response data is not valid.
+        const result = await response.json();
+        if (!result.country) return Promise.reject();
+
+        return result;
+    } catch (e) {
+        throw ("Error in analyzing name for nationality.");
     }
-    return response.json();
 }
 
 export default {

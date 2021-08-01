@@ -8,12 +8,14 @@ import ResultPanelContainer from "../organisms/ResultPanel/ResultPanelContainer"
 const NameAnalyzerPage = (props) => {
 
     return (
-        <div>
-            <header className="text-center">
-                <h1>Predict</h1>
-            </header>
-            <InputFormContainer />
-            <ResultPanelContainer />
+        <div className="row justify-content-center">
+            <div className="col col-md-6">
+                <header className="text-center">
+                    <h1>Predict</h1>
+                </header>
+                <InputFormContainer />
+                <ResultPanelContainer />
+            </div >
         </div >
     )
 }

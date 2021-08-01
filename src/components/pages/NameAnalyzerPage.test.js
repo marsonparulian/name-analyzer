@@ -30,6 +30,13 @@ describe("<NameAnalyzerPage /> with default state", () => {
         // User type in a name
         userEvent.type(nameInput, aName);
 
+        // Result panel message should  still be displayed
+        expect(screen.queryByText(texts.RESULT_PANEL_DEFAULT_MSG)).toBeInTheDocument();
+
+        // Result Panel header should not be displayed
+        const resultHeaderPattern = new RegExp(`.*${texts.RESULT_PANEL_HEADER_PRE_TEXT}.*`, "i");
+        expect(screen.queryByText(resultHeaderPattern)).not.toBeInTheDocument();
+
         // User click submit button
         userEvent.click(submitButton);
 

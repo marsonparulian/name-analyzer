@@ -3,7 +3,6 @@ import cloneDeep from "lodash/cloneDeep";
 import actionTypes from "../../actionTypes";
 import texts from "../../../configs/texts";
 import resultAgeDefault from "./resultAgeDefault";
-import { clone } from "@babel/types";
 
 const reducer = (state = null, action) => {
     let newState;

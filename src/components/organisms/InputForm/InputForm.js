@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import texts from "../../../configs/texts";
-import { PROPERTY_TYPES } from "@babel/types";
 
 /**
  * Form that ahndle input to analyze name
@@ -9,16 +8,18 @@ import { PROPERTY_TYPES } from "@babel/types";
 const InputForm = (props) => {
 
     // Handle change in name input
+    const onNameChange = props.onNameChange;
     const handleNameChange = useCallback((e) => {
-        props.onNameChange(e.target.value);
-    }, []);
+        onNameChange(e.target.value);
+    }, [onNameChange]);
     // Handle form submit
+    const onSubmit = props.onSubmit;
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
 
         // Submit only if name not empty
-        if (props.nameInput.value) props.onSubmit(props.nameInput.value);
-    }, [props.nameInput.value]);
+        if (props.nameInput.value) onSubmit(props.nameInput.value);
+    }, [props.nameInput.value, onSubmit]);
 
     return (
         <form id="input-form"

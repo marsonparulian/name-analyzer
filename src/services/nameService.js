@@ -1,6 +1,5 @@
 // Services to analyze name
 import crossFetch from "cross-fetch";
-import { resultGenderOkText } from "../components/molecules/ResultGender/ResultGender";
 
 /**
  * Predict age based on a name.
@@ -60,7 +59,7 @@ export const analyzeNameForGender = async (name) => {
 
         return result;
     } catch (e) {
-        throw ("Error in analyzing name for gender.");
+        throw new Error("Error in analyzing name for gender.");
     }
 }
 /**
@@ -87,13 +86,13 @@ export const analyzeNameForNationality = async (name) => {
 
         return result;
     } catch (e) {
-        throw ("Error in analyzing name for nationality.");
+        throw new Error("Error in analyzing name for nationality.");
     }
 }
 
-export default {
+const nameService = {
     analyzeNameForAge,
     analyzeNameForGender,
     analyzeNameForNationality,
 }
-
+export default nameService;

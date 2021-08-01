@@ -8,6 +8,8 @@ const reducer = (state = null, action) => {
 
             // Clear the `msg` to mark the form has been submitted
             newState.msg = "";
+            // The name to be displayed
+            newState.name = action.payload.name
 
             return newState;
 

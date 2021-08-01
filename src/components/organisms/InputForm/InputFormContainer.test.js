@@ -74,6 +74,7 @@ describe("<InputFormContainer /> with default state", () => {
         const currentState = store.getState();
         // Should modify `ResultPanel`
         expectedState.resultPanel.msg = "";
+        expectedState.resultPanel.name = aName;
         expect(currentState.resultPanel).toEqual(expectedState.resultPanel);
 
         // Should modify `ResultByAge` state    

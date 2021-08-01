@@ -6,6 +6,7 @@ import store from "../store";
 import texts from "../../configs/texts";
 import NameAnalyzerPage from "./NameAnalyzerPage";
 import { createResultText } from "../molecules/ResultAge/ResultAge";
+import ResultPanel from "../organisms/ResultPanel/ResultPanel";
 
 describe("<NameAnalyzerPage /> with default state", () => {
     // Shared elements
@@ -34,6 +35,10 @@ describe("<NameAnalyzerPage /> with default state", () => {
 
         // Initial result message should not be displayed.
         expect(screen.queryByText(texts.RESULT_PANEL_DEFAULT_MSG)).not.toBeInTheDocument();
+
+        // Should display result header
+        const resultHeader = ResultPanel.createHeaderText(aName);
+        expect(screen.queryByText(resultHeader)).toBeInTheDocument();
 
         // Verify all the `busy` messages are displayed
         expect(screen.queryByText(texts.RESULT_AGE_BUSY_TEXT)).toBeInTheDocument();

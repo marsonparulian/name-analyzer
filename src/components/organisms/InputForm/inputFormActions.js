@@ -16,7 +16,7 @@ export const updateNameInput = (value) => {
  */
 export const submitInputForm = (data) => {
     return (dispatch) => {
-        dispatch(submitFormStarted());
+        dispatch(submitFormStarted(data));
 
         // Analyze name for age
         analyzeNameForAge(data)
@@ -34,9 +34,12 @@ export const submitInputForm = (data) => {
         });
     }
 }
-const submitFormStarted = () => {
+const submitFormStarted = (name) => {
     return {
         type: actionTypes.SUBMIT_INPUT_FORM,
+        payload: {
+            name,
+        }
     }
 }
 const analyzeAgeOk = (age) => {

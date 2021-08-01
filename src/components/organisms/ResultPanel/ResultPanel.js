@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import texts from "../../../configs/texts";
 import ResultAgeContainer from "../../molecules/ResultAge/ResultAgeContainer";
 import ResultGenderContainer from "../../molecules/ResultGender/ResultGenderContainer";
 
@@ -14,6 +15,7 @@ const ResultPanel = (props) => {
     if (!props.msg) {
         content = (
             <div>
+                <h2>{ResultPanel.createHeaderText(props.name)}</h2>
                 <ResultAgeContainer />
                 <ResultGenderContainer />
             </div>
@@ -26,8 +28,15 @@ const ResultPanel = (props) => {
         </div>
     )
 }
+
+// Create header
+ResultPanel.createHeaderText = (name) => {
+    return `${texts.RESULT_PANEL_HEADER_PRE_TEXT} for "${name}"`;
+}
 ResultPanel.propTypes = {
     // Message to show (mainly to be used when no result have been fetched). If falsy, will show list of result
     msg: PropTypes.string.isRequired,
+    // The analyzed input name 
+    name: PropTypes.string.isRequired,
 }
 export default ResultPanel;

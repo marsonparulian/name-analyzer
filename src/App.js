@@ -1,6 +1,7 @@
 import { Provider } from "react-redux";
 import store from "./components/store";
 import NameAnalyzerPage from "./components/pages/NameAnalyzerPage";
+import Footer from "./components/organisms/Footer";
 import './App.css';
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
       <Provider store={store} >
         <NameAnalyzerPage />
       </Provider>
-    </div>
+      <Footer />
+    </div >
   );
 }
 

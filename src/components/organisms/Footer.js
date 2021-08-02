@@ -14,11 +14,9 @@ const Footer = () => {
                         Front end tech stack : <code>React</code>, <code>Redux</code>,  <code>jest</code>, <code>testing-library</code>.
                     </p>
                     <p>
-                        Code can be found in
+                        Code can be found in :
                         <a href="https://github.com/marsonparulian/name-analyzer"
-                            target="_blank" rel="noreferrer">
-                            Code repository
-                        </a>
+                            target="_blank" rel="noreferrer"> Github repository </a>
                     </p>
                 </div>
             </div>
